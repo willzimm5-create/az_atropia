@@ -53,66 +53,67 @@
       <div class="flag-stripe" style="background:#003580;"></div>
     </div>
     <div class="hero-text">
-      <h1>Atropia Rewards Portal</h1>
-      <p>Amazon Gift Card Incentive Program</p>
+      <h1>Atropia Rewards Portal//Портал вознаграждений Атропии</h1>
+      <p>Amazon Gift Card Incentive Program//Программа стимулирования подарочными картами Amazon</p>
     </div>
   </div>
 
   <div id="main-form">
-    <div class="sim-tag">CURRENCY</div>
+    <div class="sim-tag">CURRENCY//Валюта</div>
 
-    <p class="section-label">Select reward amount</p>
+    <p class="section-label">Select reward amount//Выберите сумму вознаграждения</p>
     <div class="cards-grid">
       <div class="gift-card" onclick="selectCard(this, 10)">
         <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
         <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="gc-amount">$10</div>
-        <div class="gc-label">Basic</div>
+        <div class="gc-label">Basic//Базовый уровень</div>
       </div>
       <div class="gift-card" onclick="selectCard(this, 25)">
         <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
         <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="gc-amount">$25</div>
-        <div class="gc-label">Standard</div>
+        <div class="gc-label">Standard//Стандартный уровень</div>
       </div>
       <div class="gift-card" onclick="selectCard(this, 50)">
         <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
         <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="gc-amount">$50</div>
-        <div class="gc-label">Premium</div>
+        <div class="gc-label">Premium//Премиум уровень</div>
       </div>
       <div class="gift-card" onclick="selectCard(this, 100)">
         <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
         <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="gc-amount">$100</div>
-        <div class="gc-label">Elite</div>
+        <div class="gc-label">Elite//Элитный уровень</div>
       </div>
     </div>
 
     <div class="form-card">
-      <p class="section-label" style="margin-bottom:16px;">Recipient details</p>
+      <p class="section-label" style="margin-bottom:16px;">Recipient details//Данные получателя</p>
       <div class="two-col">
         <div class="form-row">
-          <label>First name</label>
-          <input type="text" id="fname" placeholder="e.g. Tariq" />
+          <label>First name//Имя</label>
+          <input type="text" id="fname" placeholder="e.g. Tariq // например, Тарик" />
         </div>
         <div class="form-row">
-          <label>Last name</label>
-          <input type="text" id="lname" placeholder="e.g. Mansour" />
+          <label>Last name//Фамилия</label>
+          <input type="text" id="lname" placeholder="e.g. Mansour // например, Мансур" />
         </div>
       </div>
       <div class="form-row">
-        <label>Email address</label>
+        <label>Email address//адрес электронной почты</label>
         <input type="email" id="email" placeholder="recipient@example.com" />
       </div>
       <div class="form-row">
-        <label>Unit / team (optional)</label>
-        <input type="text" id="unit" placeholder="e.g. Atropia Civil Affairs Team 3" />
+        <label>Unit / team (optional)// подразделение / команда (вводить не обязательно)
+</label>
+        <input type="text" id="unit" placeholder="e.g. Atropia Civil Affairs Team 3 // например, отдел ВГС Атропии" />
       </div>
       <div class="form-row">
         <label>Reason for reward</label>
         <select id="reason">
-          <option value="">Select a reason...</option>
+          <option value="">Select a reason...// причина для награждения</option>
           <option>Outstanding performance</option>
           <option>Mission completion</option>
           <option>Community partnership</option>
@@ -122,10 +123,10 @@
         </select>
       </div>
       <div class="form-row">
-        <label>Personal message (optional)</label>
-        <textarea id="message" placeholder="Add a note to the recipient..."></textarea>
+        <label>Personal message (optional) // Личное сообщение (необязательно)</label>
+        <textarea id="message" placeholder="Add a note to the recipient...// Добавьте сообщение получателю..."></textarea>
       </div>
-      <button class="submit-btn" onclick="handleSubmit()">Issue gift card</button>
+      <button class="submit-btn" onclick="handleSubmit()">Issue gift card // Выдать подарочную карточку</button>
     </div>
   </div>
 
@@ -145,8 +146,9 @@
   </div>
 
   <div class="disclaimer">
-    This portal is a created by CHATGPT .<br>
-    No real Amazon gift cards are issued.
+    This portal is a created by CHATGPT .//Портал создан с использованием ChatGPT.
+<br>
+    No real Amazon gift cards are issued.//Реальные подарочные карточки Amazon не выдаются.
   </div>
 </div>
 
