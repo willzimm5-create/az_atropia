@@ -1,0 +1,195 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .hero { background: linear-gradient(135deg, #1a3a5c 0%, #0d2035 100%); border-radius: var(--border-radius-lg); padding: 2rem; color: white; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
+  .flag { width: 60px; height: 40px; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; flex-shrink: 0; }
+  .flag-stripe { flex: 1; }
+  .hero-text h1 { font-size: 22px; font-weight: 500; color: white; margin-bottom: 4px; }
+  .hero-text p { font-size: 14px; opacity: 0.75; }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: var(--border-radius-md); margin-top: 8px; background: rgba(255,255,255,0.15); color: white; letter-spacing: 0.04em; }
+  .section-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .gift-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem; cursor: pointer; transition: border-color 0.15s; position: relative; }
+  .gift-card:hover { border-color: var(--color-border-secondary); }
+  .gift-card.selected { border: 2px solid #378ADD; }
+  .gift-card.selected .check { display: flex; }
+  .check { display: none; position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; background: #378ADD; align-items: center; justify-content: center; }
+  .check svg { width: 11px; height: 11px; stroke: white; fill: none; stroke-width: 2.5; }
+  .gc-icon { width: 40px; height: 26px; border-radius: 4px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+  .gc-amount { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .gc-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .form-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; margin-bottom: 1.5rem; }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label { display: block; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .form-row input, .form-row select, .form-row textarea { width: 100%; padding: 8px 10px; font-size: 14px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-primary); font-family: var(--font-sans); }
+  .form-row textarea { resize: vertical; min-height: 72px; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { outline: none; border-color: #378ADD; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .submit-btn { width: 100%; padding: 11px; background: #378ADD; color: white; border: none; border-radius: var(--border-radius-md); font-size: 15px; font-weight: 500; cursor: pointer; font-family: var(--font-sans); transition: opacity 0.15s; }
+  .submit-btn:hover { opacity: 0.88; }
+  .success-screen { display: none; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 2rem; text-align: center; }
+  .success-icon { width: 52px; height: 52px; border-radius: 50%; background: #EAF3DE; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .success-icon svg { width: 24px; height: 24px; stroke: #3B6D11; fill: none; stroke-width: 2.5; }
+  .success-screen h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+  .success-screen p { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6; }
+  .gc-preview { background: linear-gradient(135deg, #ff9900 0%, #e07000 100%); border-radius: 10px; padding: 1rem 1.25rem; color: white; max-width: 280px; margin: 0 auto 1.5rem; text-align: left; }
+  .gc-preview .brand { font-size: 11px; letter-spacing: 0.08em; opacity: 0.85; margin-bottom: 4px; }
+  .gc-preview .amount-big { font-size: 28px; font-weight: 500; }
+  .gc-preview .code-row { margin-top: 10px; font-size: 12px; opacity: 0.8; font-family: var(--font-mono); letter-spacing: 0.12em; }
+  .gc-preview .to-from { font-size: 12px; opacity: 0.75; margin-top: 6px; }
+  .reset-btn { background: none; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 20px; font-size: 14px; color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); }
+  .reset-btn:hover { background: var(--color-background-secondary); }
+  .disclaimer { font-size: 11px; color: var(--color-text-tertiary); text-align: center; padding: 1rem 0 0.5rem; line-height: 1.6; }
+  .sim-tag { display: inline-block; background: #FAEEDA; color: #854F0B; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: var(--border-radius-md); letter-spacing: 0.05em; margin-bottom: 1rem; }
+</style>
+
+<div style="padding: 1rem 0;">
+
+  <div class="hero">
+    <div class="flag">
+      <div class="flag-stripe" style="background:#003580;"></div>
+      <div class="flag-stripe" style="background:#e8c84a;"></div>
+      <div class="flag-stripe" style="background:#003580;"></div>
+    </div>
+    <div class="hero-text">
+      <h1>Atropia Rewards Portal</h1>
+      <p>Amazon Gift Card Incentive Program — Exercise Use Only</p>
+      <span class="badge">EXERCISE SIMULATION · UNCLASSIFIED</span>
+    </div>
+  </div>
+
+  <div id="main-form">
+    <div class="sim-tag">SIMULATED · NOT REAL CURRENCY</div>
+
+    <p class="section-label">Select reward amount</p>
+    <div class="cards-grid">
+      <div class="gift-card" onclick="selectCard(this, 10)">
+        <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="gc-amount">$10</div>
+        <div class="gc-label">Basic</div>
+      </div>
+      <div class="gift-card" onclick="selectCard(this, 25)">
+        <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="gc-amount">$25</div>
+        <div class="gc-label">Standard</div>
+      </div>
+      <div class="gift-card" onclick="selectCard(this, 50)">
+        <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="gc-amount">$50</div>
+        <div class="gc-label">Premium</div>
+      </div>
+      <div class="gift-card" onclick="selectCard(this, 100)">
+        <div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="gc-icon" style="background:#FEF3E2;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07000" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="gc-amount">$100</div>
+        <div class="gc-label">Elite</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <p class="section-label" style="margin-bottom:16px;">Recipient details</p>
+      <div class="two-col">
+        <div class="form-row">
+          <label>First name</label>
+          <input type="text" id="fname" placeholder="e.g. Tariq" />
+        </div>
+        <div class="form-row">
+          <label>Last name</label>
+          <input type="text" id="lname" placeholder="e.g. Mansour" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Email address</label>
+        <input type="email" id="email" placeholder="recipient@example.com" />
+      </div>
+      <div class="form-row">
+        <label>Unit / team (optional)</label>
+        <input type="text" id="unit" placeholder="e.g. Atropia Civil Affairs Team 3" />
+      </div>
+      <div class="form-row">
+        <label>Reason for reward</label>
+        <select id="reason">
+          <option value="">Select a reason...</option>
+          <option>Outstanding performance</option>
+          <option>Mission completion</option>
+          <option>Community partnership</option>
+          <option>Information provided</option>
+          <option>Participation incentive</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Personal message (optional)</label>
+        <textarea id="message" placeholder="Add a note to the recipient..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Issue gift card</button>
+    </div>
+  </div>
+
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Gift card issued!</h2>
+    <p id="success-msg">The simulated reward has been processed for your exercise record.</p>
+    <div class="gc-preview">
+      <div class="brand">AMAZON · GIFT CARD</div>
+      <div class="amount-big" id="preview-amount">$25</div>
+      <div class="to-from" id="preview-to">To: —</div>
+      <div class="code-row" id="preview-code">CODE: ATRP-XXXX-XXXX-XXXX</div>
+    </div>
+    <button class="reset-btn" onclick="resetForm()">Issue another</button>
+  </div>
+
+  <div class="disclaimer">
+    This portal is a fictional simulation for training exercise purposes only.<br>
+    No real Amazon gift cards are issued. Atropia is a fictional country used in military exercises.
+  </div>
+</div>
+
+<script>
+  let selectedAmount = null;
+
+  function selectCard(el, amount) {
+    document.querySelectorAll('.gift-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedAmount = amount;
+  }
+
+  function generateCode() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    return [4,4,4].map(n => Array.from({length:n}, () => chars[Math.floor(Math.random()*chars.length)]).join('')).join('-');
+  }
+
+  function handleSubmit() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!selectedAmount) { alert('Please select a reward amount.'); return; }
+    if (!fname || !email) { alert('Please fill in the recipient name and email.'); return; }
+
+    const name = [fname, lname].filter(Boolean).join(' ');
+    document.getElementById('preview-amount').textContent = '$' + selectedAmount;
+    document.getElementById('preview-to').textContent = 'To: ' + name;
+    document.getElementById('preview-code').textContent = 'CODE: ATRP-' + generateCode();
+    document.getElementById('success-msg').textContent =
+      'A $' + selectedAmount + ' simulated reward has been logged for ' + name + ' (' + email + ').';
+
+    document.getElementById('main-form').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+  }
+
+  function resetForm() {
+    document.getElementById('main-form').style.display = 'block';
+    document.getElementById('success-screen').style.display = 'none';
+    document.querySelectorAll('.gift-card').forEach(c => c.classList.remove('selected'));
+    selectedAmount = null;
+    ['fname','lname','email','unit','message'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('reason').value = '';
+  }
+</script>
