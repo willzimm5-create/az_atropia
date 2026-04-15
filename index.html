@@ -54,13 +54,12 @@
     </div>
     <div class="hero-text">
       <h1>Atropia Rewards Portal</h1>
-      <p>Amazon Gift Card Incentive Program — Exercise Use Only</p>
-      <span class="badge">EXERCISE SIMULATION · UNCLASSIFIED</span>
+      <p>Amazon Gift Card Incentive Program</p>
     </div>
   </div>
 
   <div id="main-form">
-    <div class="sim-tag">SIMULATED · NOT REAL CURRENCY</div>
+    <div class="sim-tag">CURRENCY</div>
 
     <p class="section-label">Select reward amount</p>
     <div class="cards-grid">
@@ -135,7 +134,7 @@
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h2>Gift card issued!</h2>
-    <p id="success-msg">The simulated reward has been processed for your exercise record.</p>
+    <p id="success-msg">The reward has been processed for your exercise record.</p>
     <div class="gc-preview">
       <div class="brand">AMAZON · GIFT CARD</div>
       <div class="amount-big" id="preview-amount">$25</div>
@@ -178,7 +177,7 @@
     document.getElementById('preview-to').textContent = 'To: ' + name;
     document.getElementById('preview-code').textContent = 'CODE: ATRP-' + generateCode();
     document.getElementById('success-msg').textContent =
-      'A $' + selectedAmount + ' simulated reward has been logged for ' + name + ' (' + email + ').';
+      'A $' + selectedAmount + ' reward has been logged for ' + name + ' (' + email + ').';
 
     document.getElementById('main-form').style.display = 'none';
     document.getElementById('success-screen').style.display = 'block';
